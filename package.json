@@ -21,6 +21,7 @@
     "react": "18.2.0",
     "react-native": "0.72.5",
     "react-native-applovin-max": "^5.7.2",
+    "react-native-basic-carousel": "^1.1.1",
     "react-native-blob-util": "^0.19.1",
     "react-native-device-info": "^10.11.0",
     "react-native-media-console": "^2.0.7",
@@ -32,7 +33,8 @@
     "react-native-toast-notifications": "^3.4.0",
     "react-native-vector-icons": "^10.0.0",
     "react-native-video": "^5.2.1",
-    "react-native-webview": "^13.6.0"
+    "react-native-webview": "^13.6.0",
+    "react-native-youtube-iframe": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
