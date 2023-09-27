@@ -53,10 +53,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loaderContainer: {
-    bottom: 10,
+    bottom: 100,
     position: 'absolute',
+    height: 100,
+    width: 250,
   },
   loaderStyle: {
-    height: 100,
+    height: 250,
   },
 });

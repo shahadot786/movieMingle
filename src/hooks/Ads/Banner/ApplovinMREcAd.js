@@ -1,17 +1,16 @@
 import React from 'react';
 import {StyleSheet, Platform} from 'react-native';
 import AppLovinMAX from 'react-native-applovin-max';
-import useTheme from '../../theme/useTheme';
+import colors from '../../../theme/constant/colors';
 
 const adUnitId = '72e22b6b822ab2b6';
 
 const ApplovinMREcAd = () => {
-  const {backgroundColor} = useTheme();
   return (
     <AppLovinMAX.AdView
       adUnitId={adUnitId}
       adFormat={AppLovinMAX.AdFormat.MREC}
-      style={[styles.mrec, {backgroundColor: backgroundColor}]}
+      style={[styles.mrec, {backgroundColor: colors.Black}]}
       autoRefresh={true}
       //   onAdLoaded={adInfo => {
       //     console.log('MREC ad loaded from ' + adInfo.networkName);

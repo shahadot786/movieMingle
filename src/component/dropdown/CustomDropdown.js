@@ -1,13 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View, Pressable, ScrollView, StyleSheet} from 'react-native';
-import DescriptionText from '../../../theme/Text/DescriptionText';
-import colors from '../../../theme/constant/colors';
-import useTheme from '../../../hooks/theme/useTheme';
-import metrics from '../../../theme/constant/metrics';
+import metrics from '../../theme/constant/metrics';
+import colors from '../../theme/constant/colors';
+import DescriptionText from '../../theme/Text/DescriptionText';
 
 const CustomDropdown = ({options, onSelect, selectedValue, placeholder}) => {
-  const {initialMode} = useTheme();
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => {
@@ -25,7 +23,7 @@ const CustomDropdown = ({options, onSelect, selectedValue, placeholder}) => {
         style={[
           styles.dropdownContainer,
           {
-            backgroundColor: initialMode ? colors.Grey : colors.SoftBlack,
+            backgroundColor: colors.Grey,
           },
         ]}>
         <ScrollView
@@ -39,7 +37,7 @@ const CustomDropdown = ({options, onSelect, selectedValue, placeholder}) => {
               <DescriptionText
                 text={item.value}
                 textStyle={{
-                  color: initialMode ? colors.Black : colors.White,
+                  color: colors.White,
                   paddingVertical: 8,
                   textTransform: 'uppercase',
                 }}
@@ -57,7 +55,7 @@ const CustomDropdown = ({options, onSelect, selectedValue, placeholder}) => {
         style={({pressed}) => [
           {
             opacity: pressed ? 0.7 : 1,
-            backgroundColor: initialMode ? colors.Grey : colors.SoftBlack,
+            backgroundColor: colors.Grey,
           },
           styles.selectButton,
         ]}
@@ -65,8 +63,8 @@ const CustomDropdown = ({options, onSelect, selectedValue, placeholder}) => {
         <DescriptionText
           text={selectedValue ? selectedValue : placeholder}
           textStyle={{
-            color: initialMode ? colors.Black : colors.White,
-            textTransform: 'uppercase',
+            color: colors.White,
+            textTransform: 'capitalize',
           }}
         />
       </Pressable>

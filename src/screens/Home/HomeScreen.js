@@ -5,9 +5,9 @@ import ScreenSafeAreaView from '../../theme/Global/ScreenSafeAreaView';
 import colors from '../../theme/constant/colors';
 import BottomSpacingNav from '../../theme/Global/BottomSpacingNav';
 import {useHome} from './Utils/useHome';
-import AppExitModal from '../../components/templates/modal/AppExitModal';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
-import LoaderModal from '../../components/common/LoaderModal';
+import AppExitModal from '../../component/modal/AppExitModal';
+import LoaderModal from '../../component/helper/LoaderModal';
 
 const HomeScreen = ({navigation}) => {
   const {
@@ -20,7 +20,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <ScreenSafeAreaView style={styles.container}>
-      <LoaderModal visible={isLoading} />
+      {/* <LoaderModal visible={isLoading} /> */}
       {/* main container */}
       <View style={styles.mainContainer}>
         {/* top view */}

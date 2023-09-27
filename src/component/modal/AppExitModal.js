@@ -1,15 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import MiddleModal from '../../common/MiddleModal';
-import colors from '../../../theme/constant/colors';
-import metrics from '../../../theme/constant/metrics';
-import Text_Size from '../../../theme/constant/fonts';
-import BigText from '../../../theme/Text/BigText';
-import LargeBannerAd from '../../../hooks/Ads/Banner/LargeBannerAd';
-import PrimaryButton from '../../atoms/buttons/PrimaryButton';
-import {useAppSelector} from '../../../store/store';
-import ApplovinMREcAd from '../../../hooks/Ads/Banner/ApplovinMREcAd';
+import {useAppSelector} from '../../store/store';
+import MiddleModal from '../helper/MiddleModal';
+import BigText from '../../theme/Text/BigText';
+import ApplovinMREcAd from '../../hooks/Ads/Banner/ApplovinMREcAd';
+import PrimaryButton from '../buttons/PrimaryButton';
+import metrics from '../../theme/constant/metrics';
+import Text_Size from '../../theme/constant/fonts';
+import colors from '../../theme/constant/colors';
 
 const AppExitModal = ({
   isModalVisible,
@@ -34,9 +33,7 @@ const AppExitModal = ({
             alignItems: 'center',
             paddingHorizontal: '5%',
           }}>
-          {isAdShown && (
-            <>{isApplovin ? <ApplovinMREcAd /> : <LargeBannerAd />}</>
-          )}
+          {isAdShown && <ApplovinMREcAd />}
           <BigText
             text={'Are you sure to exit the app?'}
             textStyle={styles.text}

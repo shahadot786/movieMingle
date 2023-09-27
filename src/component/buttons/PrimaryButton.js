@@ -1,9 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View, Pressable, ActivityIndicator} from 'react-native';
 import React from 'react';
-import TitleText from '../../../theme/Text/TitleText';
-import colors from '../../../theme/constant/colors';
-import useTheme from '../../../hooks/theme/useTheme';
+import colors from '../../theme/constant/colors';
+import TitleText from '../../theme/Text/TitleText';
 
 const PrimaryButton = ({
   loading = false,
@@ -15,7 +14,6 @@ const PrimaryButton = ({
   minWidth,
   paddingVertical,
 }) => {
-  const {initialMode} = useTheme();
   return (
     <Pressable
       onPress={onPress}
@@ -34,18 +32,13 @@ const PrimaryButton = ({
         <TitleText
           text={title}
           textStyle={{
-            color: initialMode ? colors.Black : colors.White,
+            color: colors.White,
             textAlign: textAlign,
             fontWeight: 500,
             textTransform: 'capitalize',
           }}
         />
-        {loading && (
-          <ActivityIndicator
-            color={initialMode ? colors.Black : colors.White}
-            size={'small'}
-          />
-        )}
+        {loading && <ActivityIndicator color={colors.Primary} size={'small'} />}
       </View>
     </Pressable>
   );

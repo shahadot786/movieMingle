@@ -1,13 +1,11 @@
 import {StyleSheet, View, TextInput, Pressable} from 'react-native';
 import React, {useState} from 'react';
-import colors from '../../../theme/constant/colors';
-import metrics from '../../../theme/constant/metrics';
-import Text_Size from '../../../theme/constant/fonts';
-import useTheme from '../../../hooks/theme/useTheme';
-import DescriptionText from '../../../theme/Text/DescriptionText';
+import colors from '../../theme/constant/colors';
+import DescriptionText from '../../theme/Text/DescriptionText';
+import metrics from '../../theme/constant/metrics';
+import Text_Size from '../../theme/constant/fonts';
 
 const CustomTextInput = props => {
-  const {initialMode} = useTheme();
   const [isFocused, setIsFocused] = useState(false);
   const handleFocus = () => {
     setIsFocused(true);
@@ -25,13 +23,13 @@ const CustomTextInput = props => {
             styles.defaultInputStyle,
             props.inputStyle,
             isFocused && styles.focusedInput,
-            {color: initialMode ? colors.White : colors.Black},
+            {color: colors.White},
           ]}
           onChangeText={props.onChangeText}
           value={props.value}
           placeholder={props.placeholder}
           placeholderTextColor={colors.Grey}
-          keyboardType="url"
+          keyboardType={props.keyboardType}
           editable
           multiline
           numberOfLines={10}

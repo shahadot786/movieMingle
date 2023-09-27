@@ -13,7 +13,7 @@ export const options = [
 // file types
 export const fileTypes = {
   video: {
-    folder: 'video',
+    folder: 'Movie Mingle',
     mime: 'video/mp4',
   },
   audio: {
@@ -44,7 +44,7 @@ export const fileTypes = {
 //get the folder path
 export const getFolderPath = fileType => {
   const folder = fileTypes[fileType]?.folder || 'Miscellaneous';
-  return `${appPath}/OctoDownloader/${folder}`;
+  return `${appPath}/Movie Mingle/${folder}`;
 };
 //get the file name from the url path
 export const getFileNameFromUrl = url => {

@@ -2,10 +2,10 @@
 import {View} from 'react-native';
 import React from 'react';
 import * as Progress from 'react-native-progress';
-import colors from '../../../theme/constant/colors';
-import BigText from '../../../theme/Text/BigText';
-import metrics from '../../../theme/constant/metrics';
-import TitleText from '../../../theme/Text/TitleText';
+import metrics from '../../theme/constant/metrics';
+import colors from '../../theme/constant/colors';
+import BigText from '../../theme/Text/BigText';
+import TitleText from '../../theme/Text/TitleText';
 
 const convertSizeToGB = sizeInMB => {
   if (sizeInMB >= 1024) {

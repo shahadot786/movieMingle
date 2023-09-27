@@ -4,14 +4,14 @@ import {useEffect} from 'react';
 import {toastNotification} from '../../../utils/constants';
 import {useAppSelector} from '../../../store/store';
 import useBackButtonHandler from '../../../hooks/Utils/useBackButtonHandler';
-import useTheme from '../../../hooks/theme/useTheme';
 import strings from '../../../theme/constant/strings';
 import useApplovinInterstitialAd from '../../../hooks/Ads/Interstitials/useApplovinInterstitialAd';
-import useInterstitialAd from '../../../hooks/Ads/Interstitials/useInterstitialAd';
 
 export const useHome = navigation => {
+  const {isAdShown, isApplovin, interAdCount} = useAppSelector(
+    state => state.ads,
+  );
   const {isInterstitialReady, showInterstitial} = useApplovinInterstitialAd();
-  const {playInterstitialAd, isLoading} = useInterstitialAd();
   const toast = useToast();
   const netInfoState = useConnectionCheck();
   const {
@@ -39,11 +39,7 @@ export const useHome = navigation => {
         if (isApplovin) {
           if (isInterstitialReady) {
             handleShowInterstitial();
-          } else {
-            playInterstitialAd();
           }
-        } else {
-          playInterstitialAd();
         }
       }
     }
@@ -61,6 +57,5 @@ export const useHome = navigation => {
     setIsModalVisible,
     exitAppPressHandler,
     cancelPressHandler,
-    isLoading,
   };
 };

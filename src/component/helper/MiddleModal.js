@@ -10,10 +10,9 @@ import React from 'react';
 import colors from '../../theme/constant/colors';
 import BigText from '../../theme/Text/BigText';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import IOSButton from '../atoms/buttons/IOSButton';
 import Text_Size from '../../theme/constant/fonts';
 import metrics from '../../theme/constant/metrics';
-import useTheme from '../../hooks/theme/useTheme';
+import IOSButton from '../buttons/IOSButton';
 /*
     onBlur: ((e: NativeSyntheticEvent<TargetedEvent>) => void) | undefined;
     setIsModalVisible: (arg0: boolean) => void;
@@ -35,7 +34,6 @@ import useTheme from '../../hooks/theme/useTheme';
     btnTwoColor?: string;   [if isButton is true then this field is compulsory]
   */
 const MiddleModal = props => {
-  const {initialMode} = useTheme();
   return (
     <TouchableWithoutFeedback
       onBlur={props.onBlur}
@@ -54,9 +52,7 @@ const MiddleModal = props => {
               style={[
                 styles.modalView,
                 {
-                  backgroundColor: initialMode
-                    ? colors.SoftBlack
-                    : colors.SoftWhite,
+                  backgroundColor: colors.SoftBlack,
                   minHeight: props.height ? props.height : '20%',
                 },
               ]}>

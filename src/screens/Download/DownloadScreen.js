@@ -2,13 +2,8 @@
 import {StyleSheet, View, Pressable, Keyboard, ScrollView} from 'react-native';
 import React from 'react';
 import ScreenSafeAreaView from '../../theme/Global/ScreenSafeAreaView';
-import CustomTextInput from '../../components/atoms/inputs/CustomTextInput';
-import CustomDropdown from '../../components/molecules/dropdown/CustomDropdown';
-import {options} from './Utils/constant';
 import {useDownload} from './Utils/useDownload';
-import LargeBannerAd from '../../hooks/Ads/Banner/LargeBannerAd';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
-import PrimaryButton from '../../components/atoms/buttons/PrimaryButton';
 import colors from '../../theme/constant/colors';
 import CustomProgressBar from '../../components/atoms/progress/CustomProgressBar';
 import ApplovinMREcAd from '../../hooks/Ads/Banner/ApplovinMREcAd';
@@ -16,15 +11,8 @@ import BigText from '../../theme/Text/BigText';
 
 const DownloadScreen = () => {
   const {
-    handleSelectOption,
-    selectedOption,
-    onChangeInputText,
-    onPasteBtnPressHandler,
-    inputValue,
-    onDownloadPressHandler,
     isAdShown,
     isAdPriority,
-    isApplovin,
     downloadProgress,
     currentSize,
     totalSize,
@@ -43,27 +31,9 @@ const DownloadScreen = () => {
             marginHorizontal: 15,
           }}
           onPress={() => Keyboard.dismiss()}>
-          {loading === false && (
-            <View style={{marginVertical: 10}}>
-              <CustomTextInput
-                containerStyle={{marginVertical: 5}}
-                placeholder={'Please paste the url here..'}
-                onChangeText={onChangeInputText}
-                onPasteBtnPressHandler={onPasteBtnPressHandler}
-                value={inputValue}
-              />
-              <CustomDropdown
-                options={options}
-                onSelect={handleSelectOption}
-                selectedValue={selectedOption}
-                placeholder="Select a file type"
-              />
-            </View>
-          )}
-          {/* MREc Ad */}
           {isAdShown && (
             <View style={{marginVertical: 10, alignItems: 'center'}}>
-              {isApplovin ? <ApplovinMREcAd /> : <LargeBannerAd />}
+              <ApplovinMREcAd />
             </View>
           )}
           <View>
@@ -84,21 +54,13 @@ const DownloadScreen = () => {
                 />
               </View>
             )}
-            {loading === false && (
-              <PrimaryButton
-                title={'Download'}
-                background={colors.Green}
-                onPress={() => onDownloadPressHandler(selectedOption)}
-                disabled={loading}
-              />
-            )}
           </View>
           {/* MREc Ad */}
           {loading === true && (
             <>
               {isAdPriority && (
                 <View style={{marginVertical: 10, alignItems: 'center'}}>
-                  {isApplovin ? <ApplovinMREcAd /> : <LargeBannerAd />}
+                  <ApplovinMREcAd />
                 </View>
               )}
             </>

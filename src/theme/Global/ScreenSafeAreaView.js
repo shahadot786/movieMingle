@@ -1,17 +1,15 @@
 import {Platform, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import React from 'react';
-import useTheme from '../../hooks/theme/useTheme';
 import colors from '../constant/colors';
 
 const ScreenSafeAreaView = props => {
-  const {backgroundColor, initialMode} = useTheme();
   return (
-    <SafeAreaView style={[styles.container, backgroundColor, props.style]}>
+    <SafeAreaView style={[styles.container, props.style]}>
       <StatusBar
         animated={true}
         hidden={props.hidden}
-        backgroundColor={initialMode ? colors.Black : colors.White}
-        barStyle={initialMode ? 'light-content' : 'dark-content'}
+        backgroundColor={colors.Black}
+        barStyle={'light-content'}
       />
       {props.children}
     </SafeAreaView>
@@ -24,5 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight : 0,
+    backgroundColor: colors.Black,
   },
 });

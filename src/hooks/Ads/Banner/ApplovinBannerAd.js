@@ -2,18 +2,17 @@ import React from 'react';
 import {StyleSheet, Platform} from 'react-native';
 import AppLovinMAX from 'react-native-applovin-max';
 import metrics from '../../../theme/constant/metrics';
-import useTheme from '../../theme/useTheme';
+import colors from '../../../theme/constant/colors';
 
 const adUnitId = '79732273db5df1d8';
 const ApplovinBannerAd = () => {
-  const {backgroundColor} = useTheme();
   return (
     <AppLovinMAX.AdView
       adUnitId={adUnitId}
       adFormat={AppLovinMAX.AdFormat.BANNER}
       adaptiveBannerEnabled={false}
       autoRefresh={true}
-      style={[styles.banner, {backgroundColor: backgroundColor}]}
+      style={[styles.banner, {backgroundColor: colors.Black}]}
       // onAdLoaded={adInfo => {
       //   console.log('Banner ad loaded from ' + adInfo.networkName);
       // }}

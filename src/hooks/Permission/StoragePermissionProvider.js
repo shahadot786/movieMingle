@@ -43,7 +43,7 @@ export const StoragePermissionProvider = ({children}) => {
           {
             title: 'Storage Permission',
             message:
-              'OctoDownloader needs access to your storage in order to save files.',
+              'Movie Mingle needs access to your storage in order to save files.',
             buttonPositive: 'OK',
             buttonNegative: 'Cancel',
           },
@@ -55,7 +55,7 @@ export const StoragePermissionProvider = ({children}) => {
           setStoragePermissionAndStore(false);
           Alert.alert(
             'Storage Permission',
-            'OctoDownloader needs access to your storage in order to save files.',
+            'Movie Mingle needs access to your storage in order to save files.',
             [
               {
                 text: 'Cancel',

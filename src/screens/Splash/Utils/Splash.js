@@ -3,8 +3,9 @@ import React, {useEffect, useMemo, useState} from 'react';
 import AppLovinMAX from 'react-native-applovin-max';
 import SplashScreen from '../SplashScreen';
 import {ToastProvider} from 'react-native-toast-notifications';
-import Routes from '../../../navigation/Routes';
+import Routes from '../../../routes/Routes';
 import strings from '../../../theme/constant/strings';
+import {StoragePermissionProvider} from '../../../hooks/Permission/StoragePermissionProvider';
 
 const Splash = () => {
   const [loading, setLoading] = useState(true);
@@ -38,7 +39,9 @@ const Splash = () => {
   } else {
     return (
       <ToastProvider>
-        <Routes />
+        <StoragePermissionProvider>
+          <Routes />
+        </StoragePermissionProvider>
       </ToastProvider>
     );
   }
