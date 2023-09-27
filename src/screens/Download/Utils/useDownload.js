@@ -124,11 +124,6 @@ export const useDownload = data => {
   };
 
   return {
-    handleSelectOption,
-    selectedOption,
-    onChangeInputText,
-    onPasteBtnPressHandler,
-    inputValue,
     isAdShown,
     isAdPriority,
     isApplovin,

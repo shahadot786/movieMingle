@@ -1,37 +1,32 @@
-import React, {useRef, useState} from 'react';
-import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import React, {useRef, useState, useEffect} from 'react';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import VideoPlayer from 'react-native-media-console';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Orientation from 'react-native-orientation-locker';
+import colors from '../../../theme/constant/colors';
 
 const CustomVideoPlayer = ({source}) => {
   const videoPlayer = useRef(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const toggleFullScreen = () => {
+  useEffect(() => {
     if (isFullScreen) {
-      // Exit full-screen
-      Dimensions.removeEventListener('change', handleOrientationChange);
+      Orientation.lockToLandscape();
     } else {
-      // Enter full-screen
-      Dimensions.addEventListener('change', handleOrientationChange);
+      Orientation.lockToPortrait();
     }
-    setIsFullScreen(!isFullScreen);
-  };
+    return () => {
+      Orientation.lockToPortrait(); // Reset to portrait when unmounting
+    };
+  }, [isFullScreen]);
 
-  const handleOrientationChange = ({window}) => {
-    if (window.width > window.height) {
-      // Landscape mode
-      setIsFullScreen(true);
-    } else {
-      // Portrait mode
-      setIsFullScreen(false);
-    }
+  const toggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
   };
 
   const onEndVideo = () => {
     if (isFullScreen) {
-      // Exit full-screen when video ends
-      Dimensions.removeEventListener('change', handleOrientationChange);
+      Orientation.lockToPortrait(); // Reset to portrait when video ends
       setIsFullScreen(false);
       // Handle video playback completion here
     }
@@ -41,31 +36,21 @@ const CustomVideoPlayer = ({source}) => {
     <View style={styles.container}>
       <VideoPlayer
         source={{uri: source}}
-        isFullscreen={isFullScreen}
+        isFullscreen={false}
         onBack={onEndVideo}
         rewindTime={10}
         showOnStart={true}
         showTimeRemaining={false}
         showHours={true}
         videoRef={videoPlayer}
+        onEnterFullscreen={() => toggleFullScreen()}
+        disableBack={!isFullScreen}
         onEnd={onEndVideo}
         controlAnimationTiming={350}
         controlTimeoutDelay={5000}
-        seekColor={'#fff'} // Set your seek color here
+        seekColor={colors.Primary}
         showDuration={true}
-        // Customize other props as needed
       />
-      {isFullScreen && (
-        <TouchableOpacity
-          style={styles.fullScreenButton}
-          onPress={toggleFullScreen}>
-          <MaterialIcon
-            name={isFullScreen ? 'fullscreen-exit' : 'fullscreen'}
-            size={30}
-            color="#fff"
-          />
-        </TouchableOpacity>
-      )}
     </View>
   );
 };
@@ -73,13 +58,7 @@ const CustomVideoPlayer = ({source}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000', // Set your background color here
-  },
-  fullScreenButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    zIndex: 1,
+    backgroundColor: 'transparent',
   },
 });
 

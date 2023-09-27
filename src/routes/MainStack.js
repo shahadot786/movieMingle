@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import strings from '../theme/constant/strings';
 import HomeScreen from '../screens/Home/HomeScreen';
 import CustomHeader from '../component/helper/CustomHeader';
+import DownloadScreen from '../screens/Download/DownloadScreen';
 
 const Stack = createNativeStackNavigator();
 //custom header for navigation
@@ -17,8 +18,8 @@ const MainStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name={strings.HomeScreen}
-          component={HomeScreen}
+          name={strings.DownloadScreen}
+          component={DownloadScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

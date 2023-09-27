@@ -5,19 +5,13 @@ import ScreenSafeAreaView from '../../theme/Global/ScreenSafeAreaView';
 import {useDownload} from './Utils/useDownload';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
 import colors from '../../theme/constant/colors';
-import CustomProgressBar from '../../components/atoms/progress/CustomProgressBar';
 import ApplovinMREcAd from '../../hooks/Ads/Banner/ApplovinMREcAd';
 import BigText from '../../theme/Text/BigText';
+import CustomProgressBar from '../../component/progress/CustomProgressBar';
 
 const DownloadScreen = () => {
-  const {
-    isAdShown,
-    isAdPriority,
-    downloadProgress,
-    currentSize,
-    totalSize,
-    loading,
-  } = useDownload();
+  const {isAdShown, downloadProgress, currentSize, totalSize, loading} =
+    useDownload();
   return (
     <ScreenSafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -55,15 +49,10 @@ const DownloadScreen = () => {
               </View>
             )}
           </View>
-          {/* MREc Ad */}
-          {loading === true && (
-            <>
-              {isAdPriority && (
-                <View style={{marginVertical: 10, alignItems: 'center'}}>
-                  <ApplovinMREcAd />
-                </View>
-              )}
-            </>
+          {isAdShown && (
+            <View style={{marginVertical: 10, alignItems: 'center'}}>
+              <ApplovinMREcAd />
+            </View>
           )}
         </Pressable>
         <BottomSpacing />

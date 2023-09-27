@@ -12,5 +12,6 @@ const strings = {
 
   HomeScreen: 'HomeScreen',
   SplashScreen: 'SplashScreen',
+  DownloadScreen: 'DownloadScreen',
 };
 export default strings;

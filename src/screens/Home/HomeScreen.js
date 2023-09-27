@@ -8,6 +8,7 @@ import {useHome} from './Utils/useHome';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
 import AppExitModal from '../../component/modal/AppExitModal';
 import LoaderModal from '../../component/helper/LoaderModal';
+import CustomVideoPlayer from '../Player/Video/CustomVideoPlayer';
 
 const HomeScreen = ({navigation}) => {
   const {
@@ -23,12 +24,10 @@ const HomeScreen = ({navigation}) => {
       {/* <LoaderModal visible={isLoading} /> */}
       {/* main container */}
       <View style={styles.mainContainer}>
-        {/* top view */}
         <View style={styles.topView}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             style={styles.scrollView}>
-            {/* bottom spacing */}
             <BottomSpacingNav />
             <BottomSpacing />
           </ScrollView>
