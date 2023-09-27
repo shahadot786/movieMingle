@@ -7,7 +7,7 @@ import BottomSpacing from '../../theme/Global/BottomSpacing';
 import colors from '../../theme/constant/colors';
 import ApplovinMREcAd from '../../hooks/Ads/Banner/ApplovinMREcAd';
 import BigText from '../../theme/Text/BigText';
-import CustomProgressBar from '../../component/progress/CustomProgressBar';
+import CustomProgressBar from '../../components/progress/CustomProgressBar';
 
 const DownloadScreen = () => {
   const {isAdShown, downloadProgress, currentSize, totalSize, loading} =

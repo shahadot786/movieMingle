@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import strings from '../../../theme/constant/strings';
 
 const initialState = {
+  moviesData: [],
   version: {
     updateVersion: '1.0.0.1',
     isForceUpdate: false,
@@ -32,8 +33,11 @@ const firebaseSlice = createSlice({
       state.version.appShareMessage = appShareMessage;
       state.version.appUrl = appUrl;
     },
+    setMoviesData: (state, action) => {
+      state.moviesData = action.payload;
+    },
   },
 });
 
-export const {setVersion} = firebaseSlice.actions;
+export const {setVersion, setMoviesData} = firebaseSlice.actions;
 export default firebaseSlice.reducer;

@@ -6,9 +6,7 @@ import colors from '../../theme/constant/colors';
 import BottomSpacingNav from '../../theme/Global/BottomSpacingNav';
 import {useHome} from './Utils/useHome';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
-import AppExitModal from '../../component/modal/AppExitModal';
-import LoaderModal from '../../component/helper/LoaderModal';
-import CustomVideoPlayer from '../Player/Video/CustomVideoPlayer';
+import AppExitModal from '../../components/modal/AppExitModal';
 
 const HomeScreen = ({navigation}) => {
   const {
@@ -16,7 +14,6 @@ const HomeScreen = ({navigation}) => {
     setIsModalVisible,
     exitAppPressHandler,
     cancelPressHandler,
-    isLoading,
   } = useHome(navigation);
 
   return (

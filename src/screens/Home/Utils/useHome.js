@@ -11,6 +11,7 @@ export const useHome = navigation => {
   const {isAdShown, isApplovin, interAdCount} = useAppSelector(
     state => state.ads,
   );
+  const {moviesData} = useAppSelector(state => state.firebase);
   const {isInterstitialReady, showInterstitial} = useApplovinInterstitialAd();
   const toast = useToast();
   const netInfoState = useConnectionCheck();

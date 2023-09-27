@@ -4,8 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import strings from '../theme/constant/strings';
 import HomeScreen from '../screens/Home/HomeScreen';
-import CustomHeader from '../component/helper/CustomHeader';
 import DownloadScreen from '../screens/Download/DownloadScreen';
+import CustomHeader from '../components/helper/CustomHeader';
 
 const Stack = createNativeStackNavigator();
 //custom header for navigation
@@ -17,6 +17,11 @@ const MainStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name={strings.HomeScreen}
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name={strings.DownloadScreen}
           component={DownloadScreen}
