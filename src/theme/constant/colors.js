@@ -1,10 +1,10 @@
 const colors = {
-  Primary: '#DF2E38',
+  Primary: '#db2f2f',
   Green: '#5D9C59',
-  Black: '#191A32',
+  Black: '#161617',
   White: '#F2F2F2',
   Light: '#C7E8CA',
-  Grey: '#808080',
+  Grey: '#85888e',
   Warning: '#cc3300',
   Error: '#ff3333',
   Blue: '#2192FF',
@@ -13,5 +13,6 @@ const colors = {
   SoftWhite: '#e4e1e1',
   Purple: '#892e85',
   Cyan: '#0882a8',
+  Background: '#23292f',
 };
 export default colors;

@@ -1,48 +1,50 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import Carousel from 'react-native-basic-carousel';
+import {View, StyleSheet, Image, Pressable} from 'react-native';
+import {SwiperFlatList} from 'react-native-swiper-flatlist';
+import metrics from '../../theme/constant/metrics';
+import colors from '../../theme/constant/colors';
 
-// data: Array<{}>;
-// renderItem: ListRenderItem<any>;
-// onSnapToItem?: (item: {}) => void;
-// itemWidth: number;
-// bounces?: boolean; //ios only
-// pagination?: boolean;
-// paginationColor?: string;
-// paginationType?: 'default' | 'circle';
-// autoplay?: boolean;
-// autoplayDelay?: number; //2500ms
-// placeholderContent?: React.ReactNode;
-// getCurrentIndex?: (value: number) => void;
-// customPagination?: ({ activeIndex }: {
-//     activeIndex: number;
-// }) => React.ReactNode;
-// paginationPosition?: 'top' | 'bottom';
-// paginationBackgroundColor?: string;
-// }
-
-const ImageSlider = props => {
+const ImageSlider = ({data}) => {
   return (
-    <View style={[styles.container, {height: props.height}]}>
-      <Carousel
-        data={props.data}
-        renderItem={props.renderItem}
-        sliderWidth={props.sliderWidth}
-        itemWidth={props.itemWidth}
-        autoplay={props.autoplay}
-        autoplayDelay={props.autoplayDelay}
-        pagination={props.pagination}
-        paginationColor={props.paginationColor}
-        paginationType={props.paginationType}
-        paginationPosition={props.paginationPosition}
-        paginationBackgroundColor={props.paginationBackgroundColor}
+    <View style={styles.container}>
+      <SwiperFlatList
+        autoplay
+        autoplayDelay={4}
+        autoplayLoop
+        index={2}
+        showPagination
+        paginationDefaultColor={colors.Grey}
+        paginationActiveColor={colors.Primary}
+        paginationStyleItem={{width: 10, height: 10, marginHorizontal: 3}}
+        data={data}
+        renderItem={({item}) => (
+          <Pressable
+            style={({pressed}) => [styles.child, {opacity: pressed ? 0.6 : 1}]}>
+            <Image
+              source={{uri: `${item?.movieImage}`}}
+              style={styles.imageStyle}
+            />
+          </Pressable>
+        )}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  child: {
+    justifyContent: 'center',
+    width: metrics.screenWidth,
+    alignItems: 'center',
+  },
+  imageStyle: {
+    width: metrics.screenWidth - 50,
+    height: metrics.screenHeight / 1.5,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode: 'cover',
+  },
 });
 
 export default ImageSlider;

@@ -8,7 +8,7 @@ const ScreenSafeAreaView = props => {
       <StatusBar
         animated={true}
         hidden={props.hidden}
-        backgroundColor={colors.Black}
+        backgroundColor={colors.Background}
         barStyle={'light-content'}
       />
       {props.children}
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight : 0,
-    backgroundColor: colors.Black,
+    backgroundColor: colors.Background,
   },
 });
