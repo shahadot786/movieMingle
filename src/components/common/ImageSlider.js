@@ -4,7 +4,8 @@ import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import metrics from '../../theme/constant/metrics';
 import colors from '../../theme/constant/colors';
 
-const ImageSlider = ({data}) => {
+const ImageSlider = ({data, navigation}) => {
+  const onItemPressHandler = item => {};
   return (
     <View style={styles.container}>
       <SwiperFlatList
@@ -19,6 +20,7 @@ const ImageSlider = ({data}) => {
         data={data}
         renderItem={({item}) => (
           <Pressable
+            onPress={() => onItemPressHandler(item)}
             style={({pressed}) => [styles.child, {opacity: pressed ? 0.6 : 1}]}>
             <Image
               source={{uri: `${item?.movieImage}`}}

@@ -4,7 +4,6 @@ import {useEffect, useState} from 'react';
 import {toastNotification} from '../../../utils/constants';
 import {useAppSelector} from '../../../store/store';
 import useBackButtonHandler from '../../../hooks/Utils/useBackButtonHandler';
-import strings from '../../../theme/constant/strings';
 import useApplovinInterstitialAd from '../../../hooks/Ads/Interstitials/useApplovinInterstitialAd';
 
 export const useHome = navigation => {
@@ -41,7 +40,7 @@ export const useHome = navigation => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSliderData = async () => {
       try {
         // Simulate a loading delay
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -64,8 +63,7 @@ export const useHome = navigation => {
         setIsLoading(false);
       }
     };
-
-    fetchData();
+    fetchSliderData();
   }, [moviesData, netInfoState, toast]);
 
   const onIconPressHandler = type => {};
@@ -78,8 +76,9 @@ export const useHome = navigation => {
     exitAppPressHandler,
     cancelPressHandler,
     onItemPressHandler,
-    sliderData,
     isLoading,
     onIconPressHandler,
+    sliderData,
+    moviesData,
   };
 };
