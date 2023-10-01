@@ -11,6 +11,7 @@ const strings = {
   /****************************************************************************************************************************************************/
 
   HomeScreen: 'HomeScreen',
+  SearchScreen: 'SearchScreen',
   SplashScreen: 'SplashScreen',
   DownloadScreen: 'DownloadScreen',
   ItemListScreen: 'ItemListScreen',

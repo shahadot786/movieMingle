@@ -10,9 +10,7 @@ import strings from '../../../theme/constant/strings';
 export const useHome = navigation => {
   const [sliderData, setSliderData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const {isAdShown, isApplovin, interAdCount} = useAppSelector(
-    state => state.ads,
-  );
+  const {isAdShown, interAdCount} = useAppSelector(state => state.ads);
   const {moviesData} = useAppSelector(state => state.firebase);
   const {isInterstitialReady, showInterstitial} = useApplovinInterstitialAd();
   const toast = useToast();
@@ -67,14 +65,17 @@ export const useHome = navigation => {
     fetchSliderData();
   }, [moviesData, netInfoState, toast]);
 
-  const onHeaderIconPressHandler = type => {};
+  const onHeaderIconPressHandler = type => {
+    if (type === 'search') {
+      navigation.navigate(strings.SearchScreen);
+    }
+  };
   const onSeeAllPressHandler = type => {
     navigation.navigate(strings.ItemListScreen, {type: type});
   };
 
   return {
     isAdShown,
-    isApplovin,
     isModalVisible,
     setIsModalVisible,
     exitAppPressHandler,

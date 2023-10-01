@@ -65,7 +65,7 @@ export default CustomTextInput;
 const styles = StyleSheet.create({
   defaultInputStyle: {
     height:
-      metrics.screenWidth <= 380 ? 60 : metrics.screenWidth <= 600 ? 70 : 80,
+      metrics.screenWidth <= 380 ? 40 : metrics.screenWidth <= 600 ? 50 : 60,
     borderWidth: 1,
     borderColor: colors.Grey,
     padding: 10,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: Text_Size.Text_1,
   },
   focusedInput: {
-    borderColor: colors.Primary,
+    borderColor: colors.Green,
   },
   pasteBtn: {
     position: 'absolute',

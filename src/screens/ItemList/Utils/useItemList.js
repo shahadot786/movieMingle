@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 export const useItemList = (type, navigation) => {
   const [filteredData, setFilteredData] = useState();
   const {moviesData} = useAppSelector(state => state.firebase);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const moviesCopy = [...Object.values(moviesData)];
@@ -13,7 +14,8 @@ export const useItemList = (type, navigation) => {
     );
     const sortedData = filteredMovies.sort((a, b) => b.rating - a.rating);
     setFilteredData(sortedData);
+    setIsLoading(false);
   }, [type]);
 
-  return {filteredData};
+  return {filteredData, isLoading};
 };

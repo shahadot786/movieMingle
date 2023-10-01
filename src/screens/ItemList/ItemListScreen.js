@@ -6,6 +6,11 @@ import colors from '../../theme/constant/colors';
 import ScreenSafeAreaView from '../../theme/Global/ScreenSafeAreaView';
 import CustomHeader from '../../components/helper/CustomHeader';
 import {useItemList} from './Utils/useItemList';
+import LoaderModal from '../../components/helper/LoaderModal';
+import BottomSpacingNav from '../../theme/Global/BottomSpacingNav';
+import strings from '../../theme/constant/strings';
+import metrics from '../../theme/constant/metrics';
+import BigText from '../../theme/Text/BigText';
 
 const formatPostViews = postViews => {
   const updatedPostViews = postViews + 1000;
@@ -15,15 +20,16 @@ const formatPostViews = postViews => {
     return `${(updatedPostViews / 100).toFixed(1)}K`;
   } else {
     return updatedPostViews.toString();
-    s;
   }
 };
 
 const ItemListScreen = ({route, navigation}) => {
   const {type} = route.params;
-  const {filteredData} = useItemList(type);
+  const {filteredData, isLoading} = useItemList(type);
 
-  const onItemPressHandler = item => {};
+  const onItemPressHandler = item => {
+    navigation.navigate(strings.DetailsScreen, {data: item});
+  };
 
   const formattedData = filteredData?.map(item => ({
     ...item,
@@ -50,7 +56,7 @@ const ItemListScreen = ({route, navigation}) => {
             />
           </View>
           <View style={styles.watchContainer}>
-            <AntDesign name="eye" size={18} color={colors.Grey} />
+            <AntDesign name="eye" size={16} color={colors.Grey} />
             <DescriptionText text={item?.formattedPostViews} />
           </View>
         </View>
@@ -61,13 +67,15 @@ const ItemListScreen = ({route, navigation}) => {
   return (
     <ScreenSafeAreaView>
       <CustomHeader title={type} navigation={navigation} />
+      <LoaderModal visible={isLoading} />
       <FlatList
         data={formattedData}
         keyExtractor={item => item?.postedAt}
         renderItem={renderItem}
-        numColumns={3}
+        numColumns={2}
         columnWrapperStyle={styles.row}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={<BottomSpacingNav />}
       />
     </ScreenSafeAreaView>
   );
@@ -76,22 +84,19 @@ const ItemListScreen = ({route, navigation}) => {
 export default ItemListScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    height: 300,
-  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   movieItem: {
-    flex: 1,
-    margin: 10,
+    width: metrics.screenWidth / 2.2,
+    margin: 8,
     borderRadius: 10,
     position: 'relative',
   },
   movieImage: {
     width: '100%',
-    height: 250,
+    height: 300,
     resizeMode: 'cover',
     borderRadius: 10,
   },
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     borderRadius: 10,
-    height: 250,
+    height: 300,
   },
   ratingContainer: {
     flexDirection: 'row',

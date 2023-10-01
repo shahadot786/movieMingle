@@ -3,9 +3,14 @@ import {View, StyleSheet, Image, Pressable} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import metrics from '../../theme/constant/metrics';
 import colors from '../../theme/constant/colors';
+import {useNavigation} from '@react-navigation/native';
+import strings from '../../theme/constant/strings';
 
-const ImageSlider = ({data, navigation}) => {
-  const onItemPressHandler = item => {};
+const ImageSlider = ({data}) => {
+  const navigation = useNavigation();
+  const onItemPressHandler = item => {
+    navigation.navigate(strings.DetailsScreen, {data: item});
+  };
   return (
     <View style={styles.container}>
       <SwiperFlatList

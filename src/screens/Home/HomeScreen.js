@@ -12,11 +12,11 @@ import TitleText from '../../theme/Text/TitleText';
 import MovieSlider from '../../components/common/MovieSlider';
 import HeaderText from '../../theme/Text/HeaderText';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
+import ApplovinBannerAd from '../../hooks/Ads/Banner/ApplovinBannerAd';
 
 const HomeScreen = ({navigation}) => {
   const {
     isAdShown,
-    isApplovin,
     isModalVisible,
     setIsModalVisible,
     exitAppPressHandler,
@@ -64,8 +64,6 @@ const HomeScreen = ({navigation}) => {
           ascending ? a.rating - b.rating : b.rating - a.rating,
         );
     }
-
-    // Step 3: Slice the filtered and sorted data to the desired size
     const slicedData = filteredMovies.slice(0, size);
 
     return (
@@ -129,6 +127,8 @@ const HomeScreen = ({navigation}) => {
           {renderMoviesByType('History', 30, 'movieYear', true)}
           <BottomSpacing />
         </ScrollView>
+
+        {isAdShown && <ApplovinBannerAd />}
       </View>
       <AppExitModal
         isModalVisible={isModalVisible}

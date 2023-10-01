@@ -8,6 +8,7 @@ import DownloadScreen from '../screens/Download/DownloadScreen';
 import CustomHeader from '../components/helper/CustomHeader';
 import ItemListScreen from '../screens/ItemList/ItemListScreen';
 import DetailsScreen from '../screens/Details/DetailsScreen';
+import SearchScreen from '../screens/Search/SearchScreen';
 
 const Stack = createNativeStackNavigator();
 //custom header for navigation
@@ -37,6 +38,11 @@ const MainStack = () => {
         <Stack.Screen
           name={strings.DetailsScreen}
           component={DetailsScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={strings.SearchScreen}
+          component={SearchScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
