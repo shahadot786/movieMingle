@@ -1,9 +1,11 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, View, Pressable} from 'react-native';
+import {StyleSheet, Pressable, View, Image, FlatList} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import metrics from '../../theme/constant/metrics';
-import colors from '../../theme/constant/colors';
 import DescriptionText from '../../theme/Text/DescriptionText';
+import colors from '../../theme/constant/colors';
+import ScreenSafeAreaView from '../../theme/Global/ScreenSafeAreaView';
+import CustomHeader from '../../components/helper/CustomHeader';
+import {useItemList} from './Utils/useItemList';
 
 const formatPostViews = postViews => {
   const updatedPostViews = postViews + 1000;
@@ -13,15 +15,23 @@ const formatPostViews = postViews => {
     return `${(updatedPostViews / 100).toFixed(1)}K`;
   } else {
     return updatedPostViews.toString();
+    s;
   }
 };
 
-const MovieSlider = ({data, navigation, horizontal}) => {
-  const onItemPressHandler = item => {};
-  const renderMovieItem = ({item}) => {
-    const formattedRating = item?.rating.toFixed(1);
-    const formattedPostViews = formatPostViews(item?.postViews);
+const ItemListScreen = ({route, navigation}) => {
+  const {type} = route.params;
+  const {filteredData} = useItemList(type);
 
+  const onItemPressHandler = item => {};
+
+  const formattedData = filteredData?.map(item => ({
+    ...item,
+    formattedRating: item?.rating.toFixed(1),
+    formattedPostViews: formatPostViews(item?.postViews),
+  }));
+
+  const renderItem = ({item}) => {
     return (
       <Pressable
         onPress={() => onItemPressHandler(item)}
@@ -35,13 +45,13 @@ const MovieSlider = ({data, navigation, horizontal}) => {
           <View style={styles.ratingContainer}>
             <AntDesign name="star" size={16} color={colors.Yellow} />
             <DescriptionText
-              text={formattedRating}
+              text={item?.formattedRating}
               textStyle={styles.ratingText}
             />
           </View>
           <View style={styles.watchContainer}>
             <AntDesign name="eye" size={18} color={colors.Grey} />
-            <DescriptionText text={formattedPostViews} />
+            <DescriptionText text={item?.formattedPostViews} />
           </View>
         </View>
       </Pressable>
@@ -49,25 +59,33 @@ const MovieSlider = ({data, navigation, horizontal}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScreenSafeAreaView>
+      <CustomHeader title={type} navigation={navigation} />
       <FlatList
-        showsHorizontalScrollIndicator={false}
-        data={data}
+        data={formattedData}
         keyExtractor={item => item?.postedAt}
-        horizontal={horizontal}
-        renderItem={renderMovieItem}
+        renderItem={renderItem}
+        numColumns={3}
+        columnWrapperStyle={styles.row}
+        showsVerticalScrollIndicator={false}
       />
-    </View>
+    </ScreenSafeAreaView>
   );
 };
+
+export default ItemListScreen;
 
 const styles = StyleSheet.create({
   container: {
     height: 300,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   movieItem: {
+    flex: 1,
     margin: 10,
-    width: metrics.screenWidth / 3,
     borderRadius: 10,
     position: 'relative',
   },
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Adjust the background color and opacity as needed
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     borderRadius: 10,
     height: 250,
   },
@@ -112,5 +130,3 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
 });
-
-export default MovieSlider;

@@ -4,13 +4,13 @@ import metrics from '../../theme/constant/metrics';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../theme/constant/colors';
 
-const MainHeader = ({onIconPressHandler}) => {
+const MainHeader = ({onHeaderIconPressHandler}) => {
   return (
     <View style={styles.header}>
       <View style={styles.container}>
         <Pressable
           style={({pressed}) => [{opacity: pressed ? 0.4 : 1}]}
-          onPress={() => onIconPressHandler('search')}>
+          onPress={() => onHeaderIconPressHandler('search')}>
           <MaterialCommunityIcons
             name="movie-search"
             size={30}
@@ -20,7 +20,7 @@ const MainHeader = ({onIconPressHandler}) => {
 
         <Pressable
           style={({pressed}) => [{opacity: pressed ? 0.4 : 1}]}
-          onPress={() => onIconPressHandler('more')}>
+          onPress={() => onHeaderIconPressHandler('more')}>
           <MaterialCommunityIcons
             name="dots-vertical"
             size={30}

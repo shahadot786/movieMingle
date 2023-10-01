@@ -1,6 +1,6 @@
 import {StyleSheet, View, Pressable} from 'react-native';
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/constant/colors';
 import TitleText from '../../theme/Text/TitleText';
 
@@ -12,7 +12,7 @@ const CustomHeader = ({title, navigation}) => {
   return (
     <View style={styles.header}>
       <Pressable onPress={handleGoBack} style={styles.backButton}>
-        <Ionicons name="arrow-back" size={30} color={colors.SoftWhite} />
+        <AntDesign name="arrowleft" size={20} color={colors.SoftWhite} />
       </Pressable>
       <TitleText text={title} textStyle={styles.headerTitle} />
     </View>
@@ -24,7 +24,8 @@ export default CustomHeader;
 const styles = StyleSheet.create({
   header: {
     height: 60,
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
+    backgroundColor: colors.Primary,
     flexDirection: 'row',
     alignItems: 'center',
   },

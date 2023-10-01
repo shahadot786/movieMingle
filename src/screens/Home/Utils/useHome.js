@@ -5,6 +5,7 @@ import {toastNotification} from '../../../utils/constants';
 import {useAppSelector} from '../../../store/store';
 import useBackButtonHandler from '../../../hooks/Utils/useBackButtonHandler';
 import useApplovinInterstitialAd from '../../../hooks/Ads/Interstitials/useApplovinInterstitialAd';
+import strings from '../../../theme/constant/strings';
 
 export const useHome = navigation => {
   const [sliderData, setSliderData] = useState([]);
@@ -66,7 +67,10 @@ export const useHome = navigation => {
     fetchSliderData();
   }, [moviesData, netInfoState, toast]);
 
-  const onIconPressHandler = type => {};
+  const onHeaderIconPressHandler = type => {};
+  const onSeeAllPressHandler = type => {
+    navigation.navigate(strings.ItemListScreen, {type: type});
+  };
 
   return {
     isAdShown,
@@ -77,8 +81,9 @@ export const useHome = navigation => {
     cancelPressHandler,
     onItemPressHandler,
     isLoading,
-    onIconPressHandler,
+    onHeaderIconPressHandler,
     sliderData,
     moviesData,
+    onSeeAllPressHandler,
   };
 };
