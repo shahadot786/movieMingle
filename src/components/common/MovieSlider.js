@@ -5,6 +5,8 @@ import metrics from '../../theme/constant/metrics';
 import colors from '../../theme/constant/colors';
 import DescriptionText from '../../theme/Text/DescriptionText';
 import strings from '../../theme/constant/strings';
+import useApplovinInterstitialAd from '../../hooks/Ads/Interstitials/useApplovinInterstitialAd';
+import {useAppSelector} from '../../store/store';
 
 const formatPostViews = postViews => {
   const updatedPostViews = postViews + 1000;
@@ -18,8 +20,22 @@ const formatPostViews = postViews => {
 };
 
 const MovieSlider = ({data, navigation, horizontal}) => {
+  const {isInterstitialReady, showInterstitial} = useApplovinInterstitialAd();
+  const {isAdShown, interAdCount} = useAppSelector(state => state.ads);
+
+  let _count = 0;
   const onItemPressHandler = item => {
+    _count++;
+    if (isAdShown && isInterstitialReady) {
+      if (_count % interAdCount === 0) {
+        handleShowInterstitial();
+      }
+    }
     navigation.navigate(strings.DetailsScreen, {data: item});
+  };
+
+  const handleShowInterstitial = async () => {
+    await showInterstitial();
   };
   const renderMovieItem = ({item}) => {
     const formattedRating = item?.rating.toFixed(1);

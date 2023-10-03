@@ -5,11 +5,26 @@ import metrics from '../../theme/constant/metrics';
 import colors from '../../theme/constant/colors';
 import {useNavigation} from '@react-navigation/native';
 import strings from '../../theme/constant/strings';
+import {useAppSelector} from '../../store/store';
+import useApplovinInterstitialAd from '../../hooks/Ads/Interstitials/useApplovinInterstitialAd';
 
 const ImageSlider = ({data}) => {
+  const {isInterstitialReady, showInterstitial} = useApplovinInterstitialAd();
+  const {isAdShown, interAdCount} = useAppSelector(state => state.ads);
   const navigation = useNavigation();
+
+  let _count = 0;
   const onItemPressHandler = item => {
+    _count++;
+    if (isAdShown && isInterstitialReady) {
+      if (_count % interAdCount === 0) {
+        handleShowInterstitial();
+      }
+    }
     navigation.navigate(strings.DetailsScreen, {data: item});
+  };
+  const handleShowInterstitial = async () => {
+    await showInterstitial();
   };
   return (
     <View style={styles.container}>

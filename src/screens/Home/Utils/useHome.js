@@ -22,17 +22,7 @@ export const useHome = navigation => {
     exitAppPressHandler,
     cancelPressHandler,
   } = useBackButtonHandler(navigation);
-
-  // item press handler
-  const onItemPressHandler = type => {
-    if (isAdShown && isApplovin && isInterstitialReady) {
-      _count++;
-      if (_count % interAdCount === 0) {
-        handleShowInterstitial();
-      }
-    }
-    // navigation.navigate(strings.CloudItemScreen, {type});
-  };
+  let _count = 0;
 
   const handleShowInterstitial = async () => {
     await showInterstitial();
@@ -71,6 +61,12 @@ export const useHome = navigation => {
     }
   };
   const onSeeAllPressHandler = type => {
+    _count++;
+    if (isAdShown && isInterstitialReady) {
+      if (_count % interAdCount === 0) {
+        handleShowInterstitial();
+      }
+    }
     navigation.navigate(strings.ItemListScreen, {type: type});
   };
 
@@ -80,7 +76,6 @@ export const useHome = navigation => {
     setIsModalVisible,
     exitAppPressHandler,
     cancelPressHandler,
-    onItemPressHandler,
     isLoading,
     onHeaderIconPressHandler,
     sliderData,

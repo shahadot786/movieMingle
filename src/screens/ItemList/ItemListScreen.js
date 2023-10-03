@@ -11,6 +11,8 @@ import BottomSpacingNav from '../../theme/Global/BottomSpacingNav';
 import strings from '../../theme/constant/strings';
 import metrics from '../../theme/constant/metrics';
 import BigText from '../../theme/Text/BigText';
+import ApplovinBannerAd from '../../hooks/Ads/Banner/ApplovinBannerAd';
+import useApplovinInterstitialAd from '../../hooks/Ads/Interstitials/useApplovinInterstitialAd';
 
 const formatPostViews = postViews => {
   const updatedPostViews = postViews + 1000;
@@ -25,11 +27,10 @@ const formatPostViews = postViews => {
 
 const ItemListScreen = ({route, navigation}) => {
   const {type} = route.params;
-  const {filteredData, isLoading} = useItemList(type);
-
-  const onItemPressHandler = item => {
-    navigation.navigate(strings.DetailsScreen, {data: item});
-  };
+  const {filteredData, isLoading, isAdShown, onItemPressHandler} = useItemList(
+    navigation,
+    type,
+  );
 
   const formattedData = filteredData?.map(item => ({
     ...item,
@@ -77,6 +78,9 @@ const ItemListScreen = ({route, navigation}) => {
         showsVerticalScrollIndicator={false}
         ListFooterComponent={<BottomSpacingNav />}
       />
+      <View style={{alignItems: 'center'}}>
+        {isAdShown && <ApplovinBannerAd />}
+      </View>
     </ScreenSafeAreaView>
   );
 };

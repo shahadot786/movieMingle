@@ -128,7 +128,9 @@ const HomeScreen = ({navigation}) => {
           <BottomSpacing />
         </ScrollView>
 
-        {isAdShown && <ApplovinBannerAd />}
+        <View style={{alignItems: 'center'}}>
+          {isAdShown && <ApplovinBannerAd />}
+        </View>
       </View>
       <AppExitModal
         isModalVisible={isModalVisible}
