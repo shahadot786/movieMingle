@@ -1,7 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import VideoPlayer from 'react-native-media-console';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Orientation from 'react-native-orientation-locker';
 import colors from '../../../theme/constant/colors';
 

@@ -22,7 +22,6 @@ export const useHome = navigation => {
     exitAppPressHandler,
     cancelPressHandler,
   } = useBackButtonHandler(navigation);
-  let _count = 0;
 
   const handleShowInterstitial = async () => {
     await showInterstitial();
@@ -60,6 +59,7 @@ export const useHome = navigation => {
       navigation.navigate(strings.SearchScreen);
     }
   };
+  let _count = 0;
   const onSeeAllPressHandler = type => {
     _count++;
     if (isAdShown && isInterstitialReady) {

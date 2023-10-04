@@ -22,6 +22,7 @@ const ImageSlider = ({data}) => {
       }
     }
     navigation.navigate(strings.DetailsScreen, {data: item});
+    console.log({_count});
   };
   const handleShowInterstitial = async () => {
     await showInterstitial();

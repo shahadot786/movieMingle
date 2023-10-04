@@ -5,6 +5,7 @@ import CustomHeader from '../../components/helper/CustomHeader';
 import BottomSpacing from '../../theme/Global/BottomSpacing';
 import {useDetails} from './Utils/useDetails';
 import ApplovinBannerAd from '../../hooks/Ads/Banner/ApplovinBannerAd';
+import YoutubePlayer from '../../components/common/YoutubePlayer';
 
 const DetailsScreen = ({route, navigation}) => {
   const {isAdShown} = useDetails(navigation);
@@ -16,8 +17,10 @@ const DetailsScreen = ({route, navigation}) => {
 
   return (
     <ScreenSafeAreaView>
-      <CustomHeader title={sliceName} navigation={navigation} />
+      <CustomHeader height={40} title={sliceName} navigation={navigation} />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <YoutubePlayer videoId={data?.trailerLink} />
+
         <BottomSpacing />
       </ScrollView>
       <View style={{alignItems: 'center'}}>

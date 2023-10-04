@@ -33,7 +33,6 @@ const MovieSlider = ({data, navigation, horizontal}) => {
     }
     navigation.navigate(strings.DetailsScreen, {data: item});
   };
-
   const handleShowInterstitial = async () => {
     await showInterstitial();
   };
