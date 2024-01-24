@@ -1,11 +1,13 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import Splash from './src/screens/Splash/Utils/Splash';
+import {Provider} from 'react-redux';
+import store from './src/store/store';
 
 const App = () => {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <Provider store={store}>
+      <Splash />
+    </Provider>
   );
 };
 
